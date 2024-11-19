@@ -10,4 +10,8 @@ class Movie < ApplicationRecord
     validates :country
     validates :description
   end
+
+  def self.search_by_actor(actor_name)
+    joins(:actors).where("actors.name ILIKE ?", "%#{actor_name}%").distinct
+  end
 end

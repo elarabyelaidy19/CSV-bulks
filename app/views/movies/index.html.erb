@@ -1,0 +1,25 @@
+<div class="min-h-screen bg-gray-100">
+  <div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold text-center mb-8">Movie Search</h1>
+    
+    <%= render "search_form" %>
+    
+    <%= turbo_frame_tag "search_results" do %>
+      <div class="max-w-4xl mx-auto mt-8">
+        <% if @movies.present? %>
+          <div class="grid gap-6 md:grid-cols-2">
+            <% @movies.each do |movie| %>
+              <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-2"><%= movie.title %></h2>
+                <p class="text-gray-600 mb-2"><%= movie.country %></p>
+                <p class="text-gray-700"><%= truncate(movie.description, length: 150) %></p>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="text-center text-gray-600">No movies found.</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div> 
