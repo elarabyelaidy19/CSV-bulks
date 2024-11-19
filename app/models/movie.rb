@@ -11,7 +11,14 @@ class Movie < ApplicationRecord
     validates :description
   end
 
-  def self.search_by_actor(actor_name)
+  scope :search_by_actor, lambda { |actor_name|
     joins(:actors).where("actors.name ILIKE ?", "%#{actor_name}%").distinct
-  end
+  }
+
+  scope :sort_by_average_rating, lambda {
+    left_joins(:reviews)
+                    .select("movies.*, COALESCE(AVG(reviews.rating), 0) as average_rating")
+                    .group("movies.id")
+                    .order("average_rating DESC")
+  }
 end

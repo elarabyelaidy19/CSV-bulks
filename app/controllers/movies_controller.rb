@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:reviews).sort_by_average_rating
 
     respond_to do |format|
       format.html
