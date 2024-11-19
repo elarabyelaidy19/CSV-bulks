@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgis/postgis:latest
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+      
+  app:
+    build: .
+    image: app:latest
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    working_dir: /app
+    env_file:
+      - .env
+    command: script/start.sh
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+
+  worker:
+    image: app:latest
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+      - app
+    env_file:
+      - .env
+    command: script/sidekiq.sh
+    restart: always
+
+volumes:
+  redis:
+  db:
