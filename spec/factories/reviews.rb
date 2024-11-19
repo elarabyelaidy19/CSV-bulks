@@ -5,4 +5,4 @@ FactoryBot.define do
     rating { rand(1..5) }
     comment { Faker::Lorem.paragraph }
   end
-end 
+end

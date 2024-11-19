@@ -3,4 +3,4 @@ FactoryBot.define do
     movie
     filming_location
   end
-end 
+end
