@@ -1,10 +1,12 @@
 class CreateMovies < ActiveRecord::Migration[8.0]
   def change
-    create_table :movies do |t| 
-      t.string :title
-      t.string :description
-      t.string :country
+    create_table :movies do |t|
+      t.string :title, null: false
+      t.string :description, null: false
+      t.string :country, null: false
       t.timestamps
     end
+
+    add_index :movies, :title
   end
 end
