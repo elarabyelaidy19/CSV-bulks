@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_19_181153) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_19_213255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -61,6 +61,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_181153) do
     t.string "country", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "director_id"
+    t.index ["director_id"], name: "index_movies_on_director_id"
     t.index ["title"], name: "index_movies_on_title"
   end
 
@@ -88,6 +90,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_181153) do
   add_foreign_key "movie_actors", "movies"
   add_foreign_key "movie_filming_locations", "filming_locations"
   add_foreign_key "movie_filming_locations", "movies"
+  add_foreign_key "movies", "directors"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
 end
