@@ -5,6 +5,6 @@ class CreateFilmingLocations < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :filming_locations, :name
+    add_index :filming_locations, :name, unique: true
   end
 end

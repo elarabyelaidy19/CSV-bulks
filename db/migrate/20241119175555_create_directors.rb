@@ -5,6 +5,6 @@ class CreateDirectors < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :directors, :name
+    add_index :directors, :name, unique: true
   end
 end

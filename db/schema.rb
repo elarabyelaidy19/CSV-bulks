@@ -18,21 +18,21 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_213255) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_actors_on_name"
+    t.index ["name"], name: "index_actors_on_name", unique: true
   end
 
   create_table "directors", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_directors_on_name"
+    t.index ["name"], name: "index_directors_on_name", unique: true
   end
 
   create_table "filming_locations", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_filming_locations_on_name"
+    t.index ["name"], name: "index_filming_locations_on_name", unique: true
   end
 
   create_table "movie_actors", force: :cascade do |t|
@@ -63,7 +63,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_19_213255) do
     t.datetime "updated_at", null: false
     t.bigint "director_id"
     t.index ["director_id"], name: "index_movies_on_director_id"
-    t.index ["title"], name: "index_movies_on_title"
+    t.index ["title"], name: "index_movies_on_title", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
