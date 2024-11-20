@@ -1,24 +1,31 @@
-# README
+# Educatly Task
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails application with PostgreSQL, Redis, and Sidekiq integration.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- Ruby 3.3.5
+- PostgreSQL
+- Redis
+- Docker and Docker Compose
 
-* System dependencies
 
-* Configuration
+## Technolgies 
 
-* Database creation
+- Ruby on Rails 8.0
+- PostgreSQL for database
+- Redis for sidekiq backend
+- Sidekiq for background job processing
+- Tailwind CSS for styling
+- Docker and Docker Compose for containerization
 
-* Database initialization
 
-* How to run the test suite
+## Setup and installations 
+- clone the repo 
+- Create a `.env` file in the root directory same as `.env.eaxmple`
+- build and start the containers 
+```bash
+make buile 
+make up
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
